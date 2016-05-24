@@ -59,8 +59,8 @@ def post_remove(request, pk):
     return redirect('blog.views.post_list')
 
 def add_comment_to_post(request, pk):
-    post = get_object_or_404(Post, pk=pk)
     if request.method == "POST":
+        post = get_object_or_404(Post, pk=pk)
         form = CommentForm(request.POST)
         if form.is_valid():
             comment = form.save(commit=False)
@@ -70,6 +70,19 @@ def add_comment_to_post(request, pk):
     else:
         form = CommentForm()
     return render(request, 'blog/add_comment_to_post.html', {'form': form})
+
+def add_comment_to_comment(request, pk):
+    if request.method == "POST":
+        comment = get_object_or_404(Comment, pk=pk)
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            sub_comment = form.save(commit=False)
+            sub_comment.parent_comment = comment
+            sub_comment.save()
+            return redirect('blog.views.post_detail', pk=post.pk)
+    else:
+        form = CommentForm()
+    return render(request, 'blog/add_sub_comment_to_post.html', {'form': form})
 
 @login_required
 def comment_approve(request, pk):
@@ -83,3 +96,13 @@ def comment_remove(request, pk):
     post_pk = comment.post.pk
     comment.delete()
     return redirect('blog.views.post_detail', pk=post_pk)
+
+def upvote(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+    post.upvote()
+    return render(request, 'blog/post_list.html', {'post': post})
+
+def downvote(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+    post.downvote()
+    return render(request, 'blog/post_list.html', {'post': post})

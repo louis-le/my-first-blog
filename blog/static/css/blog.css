@@ -1,5 +1,5 @@
 .page-header {
-    background-color: #ff9400;
+    background-color: red;
     margin-top: 0;
     padding: 20px 20px 20px 40px;
 }
@@ -15,11 +15,17 @@
 }
 
 h1, h2, h3, h4 {
-    font-family: 'Lobster', cursive;
+    font-family: 'Pacifico', cursive;
 }
 
-.date {
+.subTitle {
     color: #828282;
+    font-size: 9pt;
+}
+
+.body {
+    font-size: 12pt;
+    font-family: Times;
 }
 
 .save {
@@ -38,7 +44,7 @@ h1, h2, h3, h4 {
 }
 
 .post {
-    margin-bottom: 70px;
+    margin-bottom: 50px;
 }
 
 .post h1 a, .post h1 a:visited {
@@ -47,4 +53,26 @@ h1, h2, h3, h4 {
 
 .comment {
     margin: 20px 0px 20px 20px;
+    font-family: Calibri;
+}
+
+.subcomment {
+    margin: 20px 0px 20px 40px;
+    font-family: Calibri;
+}
+
+.up_vote {
+    height: 15px;
+    overflow: hidden;
+}
+
+.down_vote {
+    margin-top: -15;
+    height: 30px;
+    overflow: hidden;
+}
+
+img {
+    width: 20px;
+    height: 30px;
 }
