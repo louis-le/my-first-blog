@@ -15,6 +15,11 @@
                 <p>Published: {{ post.published_date }}</p>
             </div>
         {% endif %}
+        {% if post.edited %}
+            <div class = "subTitle">
+                <p>Edited: {{ post.edited_date }}</p>
+            </div>
+        {% endif %}
         <div class = "body">
             <p>{{ post.text|linebreaks }}</p>
         </div>

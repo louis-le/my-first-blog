@@ -10,6 +10,8 @@ class Post(models.Model):
             default=timezone.now)
     published_date = models.DateTimeField(
             blank=True, null=True)
+    edited = False;
+    edited_date = None
     vote_count = 0
 
     def publish(self):
@@ -33,6 +35,8 @@ class Comment(models.Model):
     author = models.CharField(max_length=200)
     text = models.TextField()
     created_date = models.DateTimeField(default=timezone.now)
+    edited = False;
+    edited_date = None
     approved_comment = models.BooleanField(default=False)
     sub_comments = []
 
