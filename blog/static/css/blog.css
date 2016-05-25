@@ -61,18 +61,6 @@ h1, h2, h3, h4 {
     font-family: Calibri;
 }
 
-.up_vote {
-    height: 15px;
-    overflow: hidden;
-}
-
-.down_vote {
-    margin-top: -15;
-    height: 30px;
-    overflow: hidden;
-}
-
-img {
-    width: 20px;
-    height: 30px;
+.header {
+    float: left;
 }

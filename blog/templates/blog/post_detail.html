@@ -10,22 +10,26 @@
             <a class="btn btn-default" href="{% url 'post_remove' pk=post.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
         {% endif %}
         <h1>{{ post.title }}</h1>
+        <p>Vote: {{ post.vote_count }}</p>
         {% if post.published_date %}
             <div class="subTitle">
                 <p>Published: {{ post.published_date }}</p>
             </div>
         {% endif %}
-        {% if post.edited %}
+        <!--{% if post.edited %}
             <div class = "subTitle">
                 <p>Edited: {{ post.edited_date }}</p>
             </div>
         {% endif %}
+        <p>Edited Yet? {{ post.edited }}</p>
+        <p>Edited: {{ post.edited_date }}</p>
+        -->
         <div class = "body">
             <p>{{ post.text|linebreaks }}</p>
         </div>
     </div>
     <a class="btn btn-default" href="{% url 'add_comment_to_post' pk=post.pk %}">Add comment</a>
-    <hr>
+    <hr />
     {% for comment in post.comments.all %}
         {% if user.is_authenticated or comment.approved_comment %}
             <div class="comment">
@@ -38,7 +42,7 @@
                 </div>
                 <strong>{{ comment.author }}</strong>
                 <p>{{ comment.text|linebreaks }}</p>
-                <p><a href="{% url 'add_comment_to_comment' pk=comment.pk %}"> Add Comment</a></p>
+                <!--<p><a href="{% url 'add_comment_to_comment' pk=comment.pk %}"> Add Comment</a></p>
                 {% for add_comment in comment.sub_comments %}
                     {% if user.is_authenticated or add_comment.approved_comment %}
                         <div class="sub_comment">
@@ -54,7 +58,7 @@
                             <p><a href = "{% url 'add_comment_to_comment' pk=sub_comment.pk %}"> Add Comment</a></p>
                         </div>
                     {% endif %}
-                {% endfor %}
+                {% endfor %} -->
             </div>
         {% endif %}
         {% empty %}

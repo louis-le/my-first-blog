@@ -34,8 +34,8 @@ def post_edit(request, pk):
         if form.is_valid():
             post = form.save(commit=False)
             post.author = request.user
-            post.edited = True;
-            post.edited_date = timezone.now()
+            post.edited = True
+            post.published_date = timezone.now()
             post.save()
             return redirect('post_detail', pk=post.pk)
     else:
@@ -101,9 +101,21 @@ def comment_remove(request, pk):
 def upvote(request, pk):
     post = get_object_or_404(Post, pk=pk)
     post.upvote()
-    return render(request, 'blog/post_list.html', {'post': post})
+    render(request, 'blog/post_list.html', {'post': post})
+    return redirect('blog/post_list.html', pk=post.pk)
 
 def downvote(request, pk):
     post = get_object_or_404(Post, pk=pk)
     post.downvote()
-    return render(request, 'blog/post_list.html', {'post': post})
+    render(request, 'blog/post_list.html', {'post': post})
+    return redirect('blog/post_list.html', pk=post.pk)
+
+# def inside_upvote(request, pk):
+#     post = get_object_or_404(Post, pk = pk)
+#     post.upvote()
+#     return render(request, 'blog.views.post_detail', {'post': post})
+
+# def inside_upvote(request, pk):
+#     post = get_object_or_404(Post, pk = pk)
+#     post.upvote()
+#     return render(request, 'blog.views.post_detail', {'post': post})

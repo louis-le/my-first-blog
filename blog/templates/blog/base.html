@@ -8,6 +8,12 @@
         <link href = "http://fonts.googleapis.com/css?family=Bangers" rel="stylesheet" type="text/css""
     </head>
     <body>
+        <ol class="breadcrumb">
+            <li><a href="#">Home</a></li>  
+            {% if post %}
+             <li><a href="#">{{ post.title }}</a></li> 
+            {% endif %}
+        </ol>
         <div class="page-header">
             {% if user.is_authenticated %}
                 <a href="{% url 'post_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
